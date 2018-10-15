@@ -34,19 +34,6 @@ class EstiloFicha(models.Model):
         verbose_name        = 'Estilo-Ficha'
         verbose_name_plural = 'Estilo-Fichas'
 
-    def save(self):
-        super(EstiloFicha, self).save()
-
-        if self.icono != None and self.icono.path.split('/')[-1] != 'no_icono.jpg':
-            image = Image.open(self.icono)
-            image = image.resize(ICONO_SIZE, Image.ANTIALIAS)
-            image.save(self.icono.path)
-
-        if self.fondo_imagen != None and self.fondo_imagen.path.split != 'no-imagen.jpg':
-            image = Image.open(self.fondo_imagen)
-            image = image.resize(IMAGEN_FONDO_SIZE, Image.ANTIALIAS)
-            image.save(self.fondo_imagen.path)
-
     def __str__(self):
         return self.nombre
     def __unicode__(self):
@@ -65,13 +52,6 @@ class Escritor(models.Model):
         return self.nombre
     def __unicode__(self):
         return self.nombre
-
-    def save(self):
-        super(Escritor, self).save()
-        if self.foto.path.split('/')[-1] != 'no_foto.jpg':
-            image = Image.open(self.foto)
-            image = image.resize(FOTO_SIZE, Image.ANTIALIAS)
-            image.save(self.foto.path)
 
 class Tema(models.Model):
     nombre      = models.CharField(primary_key=True,max_length=100)
